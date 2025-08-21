@@ -1,0 +1,8 @@
+{
+  "master_volume": 0.85,
+  "music_volume": 0.92,
+  "sfx_volume": 0.9166666666666666,
+  "fullscreen": false,
+  "vsync": true,
+  "show_fps": true
+}

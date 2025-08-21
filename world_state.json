@@ -1,0 +1,15 @@
+{
+  "current_area": "gothic_castle",
+  "player_abilities": [
+    "double_jump",
+    "dash",
+    "boss_1_defeated",
+    "wall_jump"
+  ],
+  "visited_areas": [
+    "crystal_caves",
+    "abandoned_mines",
+    "gothic_castle"
+  ],
+  "discovered_shortcuts": []
+}
