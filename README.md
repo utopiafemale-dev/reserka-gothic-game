@@ -59,6 +59,29 @@ python src/reserka_gothic.py
 python src/level_editor.py
 ```
 
+
+## 🧢 New Prototype: Pokémon-Style 2D Pixel RPG
+
+A new playable prototype is included at `src/pixel_mon_rpg.py`. It focuses on classic monster-RPG flow:
+
+- Top-down tile exploration
+- Tall-grass random encounters
+- Turn-based battle menu (Attack / Skill / Item / Run)
+- Healer NPC and simple town interaction
+
+Run it with:
+
+```bash
+python src/pixel_mon_rpg.py
+```
+
+Controls:
+- Move: WASD / Arrow Keys
+- Interact: E
+- Battle select: W/S or Up/Down
+- Confirm action: Enter or Space
+- Quit: ESC
+
 ## 🎮 How to Play
 
 ### Controls
