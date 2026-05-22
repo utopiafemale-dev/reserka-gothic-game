@@ -207,6 +207,15 @@ Use the level editor to create new levels, or manually edit JSON files in the `l
 - **Mid Game**: Complex level layouts with mixed enemy types
 - **Late Game**: Challenging combat encounters and precision platforming
 
+
+## 🤖 AI Virtual World Business Concept
+
+If you want to build a "virtual world for AI" with a real-world profit bridge, see:
+
+- `docs/ai_virtual_world_business_loop.md`
+
+This concept proposes an agent economy, auditable profit ledger, and a controlled payout pipeline to send approved earnings to real-world accounts.
+
 ## 🚧 Future Enhancements
 
 ### Planned Features
