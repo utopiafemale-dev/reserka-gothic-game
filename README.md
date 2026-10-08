@@ -1,5 +1,12 @@
 # 🏰 Reserka - Gothic Edition
 
+The latest Godot 4 edition is in **[godot/](godot/README.md)**: real 3D scenery,
+sprite characters, four stages, sound, a startup menu and up to eight co-op
+players. Import `godot/project.godot` to play or edit it. The browser build is
+in `web/`; online browser rooms need the included `server/` service.
+See the Godot README for hosting and gameplay tuning.
+
+
 A dark fantasy action-platformer game inspired by classic Metroidvania titles, featuring stunning Gothicvania pixel art assets and atmospheric gothic horror gameplay.
 
 ![Reserka Gothic](https://img.shields.io/badge/Reserka-Gothic%20Edition-gold?style=for-the-badge)

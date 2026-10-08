@@ -2,8 +2,11 @@ config_version=5
 
 [application]
 config/name="Reserka Gothic — Godot"
-run/main_scene="res://main.tscn"
+run/main_scene="res://three_d/boot.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[autoload]
+Session="*res://three_d/session.gd"
 
 [display]
 window/size/viewport_width=960

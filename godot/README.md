@@ -57,3 +57,62 @@ Smoke checks cover core controls and combat. Campaign checks exercise all four s
 In a sandbox where your normal user directories are read-only, set `XDG_DATA_HOME`, `XDG_CONFIG_HOME`, and `XDG_CACHE_HOME` to writable directories before running Godot.
 
 For a browser build, install Godot export templates matching your editor version, add a Web export preset, and export to a static hosting service. This is an editable Godot project, not a hosted browser game.
+
+## 2.5D and co-op edition
+
+The default startup scene is `three_d/boot.tscn`: character selection, solo play,
+co-op host/join and a loading screen. The scenery uses eight original procedural
+GLB models; characters stay animated sprites in a real 3D world. Distant scenery
+retains the existing illustrations. This is not a full conversion to rigged 3D
+characters. Gothic Knight and Adventurer are distinct sprite designs; Spectral
+and Crimson are knight color variants, with the same abilities.
+
+Edit `three_d/gameplay.tres` in the Godot Inspector to tune movement, gravity,
+jump counts, health, sword damage, enemy behavior and camera settings. Stage
+layouts remain in `scripts/levels.gd`. Open `main.tscn` for the original 2D game.
+Original 3D models can be rebuilt with Blender using `tools/build_3d_models.py`.
+
+Desktop co-op supports eight players total using an authoritative ENet host.
+Each device picks its own character. Join using the host's reachable address and
+UDP port (default 24567). Across the internet the host needs suitable firewall
+and router forwarding. The host controls pause, retry and stage progression.
+Partners revive after six seconds if another player survives; everyone falling
+ends the stage. Host disconnect ends the session; there is no host migration.
+
+## Browser edition and hosting
+
+The repository's `web/` contains the Godot 4.6.3 single-threaded WebGL2 export.
+Browser co-op uses WebSockets and a separate authoritative server for each room.
+Create a room, share its six-character code, and friends join from the same site.
+The first player controls pause, retry and stage progression; leadership passes
+to a remaining player when they leave. Rooms support two through eight players,
+with at most eight simultaneous rooms per server. Empty rooms expire after
+20 minutes. There are no accounts, passwords, matchmaking or saved progress.
+Keep room codes private if you only want friends to join.
+
+Run from the repository root with Python 3.12+, Godot 4.6.3 and dependencies:
+
+```sh
+pip install -r server/requirements.txt
+godot --headless --path godot --editor --import
+python server/app.py
+```
+
+Deploy the root Dockerfile on a container host supporting persistent WebSockets.
+Set `PORT` if required by the host; default is 8080. Serve it through HTTPS so
+browser clients use WSS. This same service serves both the game and room API.
+A static-only Sites upload can run solo but cannot provide room multiplayer.
+No public hosting has been configured in this repository.
+
+To rebuild the browser export, install the matching official Godot export
+templates, then run `godot --headless --path godot --export-release Web`.
+Desktop network validation: `python godot/tools/run_network_tests.py`.
+
+Validation in this cloud environment: 42 3D gameplay checks, four actual-physics
+stage traversals, 11 startup/loading checks, 59 legacy campaign/audio checks,
+68 desktop ENet checks, and eight WebSocket client checks passed. Two actual
+Chromium sessions created/joined the same room without console errors after
+WebSocket flow control was added. Public internet
+latency and mobile touch controls are not tested; play uses a keyboard. The Docker
+build could not download Debian packages through this environment’s container
+network, so container deployment remains unverified.
