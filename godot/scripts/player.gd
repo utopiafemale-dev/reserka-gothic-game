@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal health_changed(value: int)
 signal died
+signal sound_requested(effect: String)
 
 const SPEED := 270.0
 const JUMP := -490.0
@@ -13,6 +14,7 @@ var invincible_time := 0.0
 var hit_targets: Array = []
 var sprite: AnimatedSprite2D
 var frozen := false
+var world_width := 2400.0
 
 func _ready() -> void:
 	add_to_group("player")
@@ -50,12 +52,14 @@ func jump() -> void:
 	if jumps < 2 and not frozen:
 		velocity.y = JUMP
 		jumps += 1
+		sound_requested.emit("jump")
 
 func attack() -> void:
 	if attack_time <= 0.0 and not frozen:
 		attack_time = 0.34
 		hit_targets.clear()
 		sprite.play("attack")
+		sound_requested.emit("sword")
 
 func attack_rect() -> Rect2:
 	return Rect2(global_position + Vector2(8 if facing > 0 else -82, -56), Vector2(74, 60))
@@ -65,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		return
 	invincible_time = maxf(0, invincible_time - delta)
 	attack_time = maxf(0, attack_time - delta)
-	if is_on_floor():
+	if is_on_floor() and velocity.y >= 0:
 		jumps = 0
 	velocity.y += 1300.0 * delta
 	var direction := Input.get_axis("move_left", "move_right")
@@ -77,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		attack()
 	move_and_slide()
-	position.x = clampf(position.x, 20, 2360)
+	position.x = clampf(position.x, 20, world_width - 40)
 	sprite.flip_h = facing < 0
 	sprite.modulate.a = 0.45 if invincible_time > 0 else 1.0
 	if attack_time > 0:
@@ -103,8 +107,13 @@ func take_damage(amount: int) -> void:
 	health = maxi(0, health - amount)
 	invincible_time = 1.0
 	health_changed.emit(health)
+	sound_requested.emit("hurt")
 	if health == 0:
 		died.emit()
+
+func heal(amount: int) -> void:
+	health = mini(100, health + amount)
+	health_changed.emit(health)
 
 func _draw() -> void:
 	if attack_time > 0:

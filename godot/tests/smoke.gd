@@ -51,7 +51,7 @@ func run() -> void:
 	await process_frame
 	check(game.souls == 1, "defeating enemy awards a soul")
 	for other in get_nodes_in_group("enemies"):
-		other.take_hit(50, 1)
+		other.take_hit(other.health, 1)
 	await process_frame
 	player.position.x = 2300
 	await process_frame
@@ -81,4 +81,6 @@ func run() -> void:
 	player.take_damage(100)
 	check(game.finished and player.frozen and player.health == 0, "death ends level")
 	print("Godot gameplay smoke checks complete: %d failures" % failures)
+	game.sound.stop_all()
+	await create_timer(0.2).timeout
 	quit(1 if failures else 0)
