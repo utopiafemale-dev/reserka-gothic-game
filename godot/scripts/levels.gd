@@ -17,7 +17,7 @@ const STAGES: Array = [
  "platforms":[Rect2(0,480,650,60),Rect2(760,480,680,60),Rect2(1550,480,620,60),Rect2(2290,480,710,60),Rect2(300,365,200,22),Rect2(580,300,250,22),Rect2(1030,355,230,22),Rect2(1340,290,270,22),Rect2(1810,350,230,22),Rect2(2100,285,260,22),Rect2(2520,355,220,22)],
  "enemies":[["hound",Vector2(440,480)],["skull",Vector2(720,250)],["demon",Vector2(1140,480)],["skull",Vector2(1460,245)],["hound",Vector2(1930,480)],["skull",Vector2(2220,245)],["demon",Vector2(2650,480)]],
  "hazards":[Rect2(890,458,80,22),Rect2(1680,458,80,22),Rect2(2390,458,80,22)], "heals":[Vector2(1130,335),Vector2(2220,265)]},
- {"name":"The Warden's Courtyard", "width":2600, "background":"courtyard", "music":"battle",
+ {"name":"The Moonlit Graveyard", "width":2600, "background":"graveyard", "music":"battle",
  "tint":Color(0.85,0.55,0.6), "stone":Color(0.27,0.12,0.18),
  "platforms":[Rect2(0,480,2600,60),Rect2(270,365,220,22),Rect2(620,295,220,22),Rect2(1000,365,230,22),Rect2(1430,330,230,22),Rect2(1830,355,200,22),Rect2(2190,355,180,22)],
  "enemies":[["demon",Vector2(440,480)],["hound",Vector2(800,480)],["skull",Vector2(1110,300)],["demon",Vector2(1500,480)],["warden",Vector2(2120,480)]],

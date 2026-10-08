@@ -40,7 +40,7 @@ func run() -> void:
 	for level in 4:
 		check(game.level_index == level, "stage %d loaded through campaign" % (level + 1))
 		check(game.background != null and game.world_width == game.stage.width, "stage background and width")
-		check(game.sound.music.playing and game.sound.music.stream.loop, "stage music starts and loops")
+		check(game.sound.music.playing and game.sound.music.stream.loop_mode == AudioStreamWAV.LOOP_FORWARD, "stage music starts and loops")
 		check(game.sound.music.stream.get_length() > 0, "stage music decodes")
 		for i in 25:
 			await physics_frame

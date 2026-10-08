@@ -4,11 +4,11 @@ const EFFECTS := {
  "jump":preload("res://assets/audio/jump.wav"), "sword":preload("res://assets/audio/sword.wav"),
  "hurt":preload("res://assets/audio/hurt.wav"), "pickup":preload("res://assets/audio/pickup.wav"),
  "enemy_death":preload("res://assets/audio/enemy_death.wav"), "death":preload("res://assets/audio/death.wav"),
- "clear":preload("res://assets/audio/clear.ogg")
+ "clear":preload("res://assets/audio/clear.wav")
 }
 const MUSIC := {
- "castle":preload("res://assets/audio/castle.ogg"), "swamp":preload("res://assets/audio/swamp.ogg"),
- "battle":preload("res://assets/audio/battle.ogg")
+ "castle":preload("res://assets/audio/castle.wav"), "swamp":preload("res://assets/audio/swamp.wav"),
+ "battle":preload("res://assets/audio/battle.wav")
 }
 var music: AudioStreamPlayer
 var voices: Array[AudioStreamPlayer] = []
@@ -27,8 +27,10 @@ func _ready() -> void:
 
 func play_music(track: String) -> void:
  music.stop()
- var stream: AudioStreamOggVorbis = MUSIC[track].duplicate()
- stream.loop = true
+ var stream: AudioStreamWAV = MUSIC[track].duplicate()
+ stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+ stream.loop_begin = 0
+ stream.loop_end = stream.data.size() / 4
  music.stream = stream
  music.volume_db = music_volume
  music.play()

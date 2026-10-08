@@ -1,16 +1,12 @@
-# Audio asset sources
+# Original procedural audio
 
-All files were copied from the existing Reserka repository under `assets/environments/Packs/`; no new external audio downloads were used. Filenames were simplified for Godot. These notes record provenance, not new license grants. Retain and follow the original packs' terms.
+All audio in this folder is generated locally by `tools/generate_audio.py`, using only Python standard-library math, seeded noise, and PCM WAV encoding. No recordings, third-party samples, external audio packs, or AI music service outputs are used.
 
-| Godot file | Original pack and path |
-| --- | --- |
-| castle.ogg | Meta data assets files/sounds/music/ghost-town.ogg |
-| swamp.ogg | Meta data assets files/sounds/music/Sun Tribe interior.ogg |
-| battle.ogg | Meta data assets files/sounds/music/determination.ogg |
-| jump.wav | Gothicvania Church/Stomper Asset Files/fx/jump.wav |
-| sword.wav | Gothicvania Church/Stomper Asset Files/fx/hit.wav |
-| hurt.wav | Gothicvania Church/Stomper Asset Files/fx/hurt.wav |
-| pickup.wav | Gothicvania Church/Stomper Asset Files/fx/pick.wav |
-| clear.ogg | Meta data assets files/sounds/fx/complete.ogg |
-| enemy_death.wav | Sewers pack files/Sounds/enemy-death.wav |
-| death.wav | Sewers pack files/Sounds/player-death.wav |
+- `castle.wav`: slow minor-key organ-like pads, bass and bells (70 BPM).
+- `swamp.wav`: slower low-register atmospheric version (56 BPM).
+- `battle.wav`: faster arpeggiated boss theme (96 BPM).
+- `jump.wav`, `sword.wav`, `hurt.wav`, `pickup.wav`, `enemy_death.wav`, `death.wav`, `clear.wav`: synthesized gameplay effects.
+
+Tracks repeat through Godot WAV loop settings. Short edge fades prevent clicks. All files are 22050 Hz, signed 16-bit stereo PCM.
+
+These are original procedural project assets, not downloaded free packs and not music made by an AI app. The previous copied OGG tracks and copied effects have been replaced. No third-party audio attribution is required for this newly synthesized material. No public-domain dedication or external license is assigned by this file.
